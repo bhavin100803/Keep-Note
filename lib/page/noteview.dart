@@ -32,10 +32,10 @@ class _NoteViewState extends State<NoteView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color.bgcolor,
+      // backgroundColor: color.bgcolor,
       appBar: AppBar(
-        foregroundColor: color.white,
-        backgroundColor: color.bgcolor,
+        // foregroundColor: color.white,
+        // backgroundColor: color.bgcolor,
         elevation: 0.0,
         actions: [
           IconButton(
@@ -81,12 +81,16 @@ class _NoteViewState extends State<NoteView> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children : [
-                  Text("Created on ${DateFormat('dd-MM-yyyy - KK:mm').format(widget.note!.createdTime)}",style: TextStyle(color: color.white),),
+                  Text("Created on ${DateFormat('dd-MM-yyyy - KK:mm').format(widget.note!.createdTime)}",),
+                    // style: TextStyle(color: color.white),
                 SizedBox(height: 10,),
-                Text(widget.note!.title , style: TextStyle(color: Colors.white , fontSize: 23 , fontWeight: FontWeight.bold),),
+                Text(widget.note!.title , style: TextStyle(fontSize: 23 , fontWeight: FontWeight.bold),),
+                    // color: Colors.white ,
                 SizedBox(height: 10,),
-                Text(widget.note!.content,style: TextStyle(color: Colors.white),),
-                SizedBox(height: 20,),
+                Text(widget.note!.content,
+                  // style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 10,),
                 Container(
                   child:  widget.note!.attachImage!.isEmpty
                       ? Text('')

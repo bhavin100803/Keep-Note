@@ -21,7 +21,9 @@ class _SidemenubarState extends State<Sidemenubar> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        decoration: BoxDecoration(color: color.bgcolor),
+        decoration: BoxDecoration(
+            // color: color.bgcolor
+        ),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,12 +33,12 @@ class _SidemenubarState extends State<Sidemenubar> {
                   child: Text(
                     "Google Keep",
                     style: TextStyle(
-                        color: Colors.white,
+                        // color: Colors.white,
                         fontSize: 25,
                         fontWeight: FontWeight.bold),
                   )),
               Divider(
-                color: Colors.white.withOpacity(0.3),
+                // color: Colors.white.withOpacity(0.3),
               ),
               sectionone(),
               SizedBox(height: 5,),
@@ -74,14 +76,17 @@ class _SidemenubarState extends State<Sidemenubar> {
             padding: EdgeInsets.all(5),
             child: Row(
               children: [
-                Icon(Icons.lightbulb,size: 25,color: color.white.withOpacity(0.7),),
+                Icon(Icons.lightbulb,size: 25,
+                  // color: color.white.withOpacity(0.7),
+                ),
                 SizedBox(
                   width: 27,
                 ),
                 Text(
                   "Notes",
                   style: TextStyle(
-                      color: Colors.white.withOpacity(0.7), fontSize: 18),
+                      // color: Colors.white.withOpacity(0.7),
+                      fontSize: 18),
                 )
               ],
             ),
@@ -109,14 +114,17 @@ class _SidemenubarState extends State<Sidemenubar> {
             padding: EdgeInsets.all(5),
             child: Row(
               children: [
-                Icon(Icons.archive_outlined,size: 25,color: color.white.withOpacity(0.7),),
+                Icon(Icons.archive_outlined,size: 25,
+                  // color: color.white.withOpacity(0.7),
+                ),
                 SizedBox(
                   width: 27,
                 ),
                 Text(
                   "Archive",
                   style: TextStyle(
-                      color: Colors.white.withOpacity(0.7), fontSize: 18),
+                      // color: Colors.white.withOpacity(0.7),
+                      fontSize: 18),
                 )
               ],
             ),
@@ -179,14 +187,17 @@ class _SidemenubarState extends State<Sidemenubar> {
             padding: EdgeInsets.all(5),
             child: Row(
               children: [
-                Icon(Icons.settings_outlined,size: 25,color: color.white.withOpacity(0.7),),
+                Icon(Icons.settings_outlined,size: 25,
+                  // color: color.white.withOpacity(0.7),
+                ),
                 SizedBox(
                   width: 27,
                 ),
                 Text(
                   "Setting",
                   style: TextStyle(
-                      color: Colors.white.withOpacity(0.7), fontSize: 18),
+                      // color: Colors.white.withOpacity(0.7),
+                      fontSize: 18),
                 )
               ],
             ),
@@ -219,14 +230,17 @@ class _SidemenubarState extends State<Sidemenubar> {
             padding: EdgeInsets.all(5),
             child: Row(
               children: [
-                Icon(Icons.logout,size: 25,color: color.white.withOpacity(0.7),),
+                Icon(Icons.logout,size: 25,
+                  // color: color.white.withOpacity(0.7),
+                ),
                 SizedBox(
                   width: 27,
                 ),
                 Text(
                   "Log-out",
                   style: TextStyle(
-                      color: Colors.white.withOpacity(0.7), fontSize: 18),
+                      // color: Colors.white.withOpacity(0.7),
+                      fontSize: 18),
                 )
               ],
             ),

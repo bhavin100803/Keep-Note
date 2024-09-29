@@ -4,13 +4,13 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:keep_note_clone/color.dart';
 import 'package:keep_note_clone/page/createnote.dart';
 import 'package:keep_note_clone/page/drawing.dart';
-import 'package:keep_note_clone/page/login/login.dart';
 import 'package:keep_note_clone/model/notemodel.dart';
-import 'package:keep_note_clone/services/auth.dart';
 import 'package:keep_note_clone/services/database.dart';
 import 'package:keep_note_clone/services/login_info.dart';
+import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:uuid/uuid.dart';
+import '../theme.dart';
 import 'noteview.dart';
 import 'searchpage.dart';
 import 'sidemenubar.dart';
@@ -23,12 +23,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+   var _isDarkMode;
   late String? ImgUrl;
   bool isStaggered = true;
   bool isLoading = true;
   List<Note> noteList = [];
   List<Note> pinNoteList = [];
   List<Note> archiveNoteList = [];
+
+
+
   // String note2 =
   //     "This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note"
   //     "This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note"
@@ -46,12 +50,12 @@ class _HomePageState extends State<HomePage> {
     //     createdTime: DateTime.now()));
     getAllNotes();
     checMic();
-
     // LocalDataSaver.saveSync(false);
     // updateonenote();
     // getOneNote();
     // deletenote();
   }
+
 
   // Define different pages for navigation
   final List<Widget> _pages = [
@@ -107,6 +111,16 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void Thame(){
+    if(_isDarkMode){
+
+    }else{
+
+    }
+  }
+
+
+
   SpeechToText speechToText = SpeechToText();
   var isListening = false;
   var textspeech = "Click mic to record";
@@ -118,15 +132,14 @@ class _HomePageState extends State<HomePage> {
       _selectedIndex = index;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return isLoading
         ? Scaffold(
-            backgroundColor: color.bgcolor,
+            // backgroundColor: color.bgcolor,
             body: Center(
               child: CircularProgressIndicator(
-                color: color.white,
+                // color: color.white,
               ),
             ),
           )
@@ -136,8 +149,12 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => Createnote()));
               },
-              backgroundColor: color.cardcolor,
-              child: Image.asset("assets/add.png",height: 28,width: 28,),
+               // backgroundColor: color.cardcolor,
+              child: Image.asset(
+                "assets/add.png",
+                height: 28,
+                width: 28,
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.00),
               ),
@@ -145,7 +162,7 @@ class _HomePageState extends State<HomePage> {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.endDocked,
             bottomNavigationBar: BottomAppBar(
-              color: color.cardcolor,
+              // color: color.cardcolor,
               notchMargin: 10.0,
               shape: CircularNotchedRectangle(), // This creates the notch
               child: Row(
@@ -155,15 +172,22 @@ class _HomePageState extends State<HomePage> {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height: 10.00,),
+                      SizedBox(
+                        height: 10.00,
+                      ),
                       GestureDetector(
                           onTap: () async {
                             _onItemTapped(0);
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => DrawingPage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => DrawingPage()));
                           },
-                          child: Image.asset("assets/brush.png",height: 32,width: 32,)
-                      ),
+                          child: Image.asset(
+                            "assets/brush.png",
+                            height: 32,
+                            width: 32,
+                          )),
                     ],
                   ),
                   // Column(
@@ -216,7 +240,7 @@ class _HomePageState extends State<HomePage> {
             endDrawerEnableOpenDragGesture: true,
             key: _draewrKey,
             drawer: Sidemenubar(),
-            backgroundColor: color.bgcolor,
+            // backgroundColor: color.bgcolor,
             body: SafeArea(
               child: Column(
                 children: <Widget>[
@@ -225,14 +249,16 @@ class _HomePageState extends State<HomePage> {
                     width: MediaQuery.of(context).size.width,
                     height: 55,
                     decoration: BoxDecoration(
-                        color: color.cardcolor,
+                          // color: Colors.red,
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              spreadRadius: 1,
-                              blurRadius: 3)
-                        ]),
+                        border: Border.all(color: Colors.grey)
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //       // color: Colors.black.withOpacity(0.2),
+                        //       spreadRadius: 1,
+                        //       blurRadius: 3)
+                        // ]
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -244,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                                 icon: Icon(
                                   Icons.menu,
-                                  color: Colors.white,
+                                  // color: Colors.white,
                                 )),
                             SizedBox(
                               width: 10,
@@ -257,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                                         builder: (context) => SearchView()));
                               },
                               child: Container(
-                                width: MediaQuery.of(context).size.width / 3,
+                                width: MediaQuery.of(context).size.width / 2.8,
                                 height: 200,
                                 // decoration: BoxDecoration(border: Border.all(color: Colors.white)),
                                 child: Column(
@@ -267,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                                     Text(
                                       "Search Your Notes",
                                       style: TextStyle(
-                                          color: Colors.white.withOpacity(0.5),
+                                          // color: Colors.white.withOpacity(0.5),
                                           fontSize: 15),
                                     ),
                                   ],
@@ -277,43 +303,35 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: 6),
+                          margin: EdgeInsets.symmetric(horizontal: 5),
                           child: Row(
                             children: [
-                              TextButton(
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      50.00)))),
-                                  onPressed: () {
-                                    setState(() {
-                                      isStaggered = !isStaggered;
-                                    });
-                                  },
-                                  child: isStaggered
-                                      ? Icon(
-                                          Icons.grid_view,
-                                          color: Colors.white,
-                                        )
-                                      : Icon(
-                                          Icons.splitscreen,
-                                          color: Colors.white,
-                                        )),
-                              SizedBox(
-                                width: 4,
-                              ),
                               GestureDetector(
-                                onTap: () {
-                                  signOut();
-                                  LocalDataSaver.saveLoginData(false);
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => Login()));
+                                onTap: (){
+                                  setState(() {
+                                    isStaggered = !isStaggered;
+                                  });
                                 },
+                                child: isStaggered
+                                    ? Icon(
+                                  Icons.grid_view,
+                                  // color: Colors.white,
+                                )
+                                    : Icon(
+                                  Icons.splitscreen,
+                                  // color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(width: 15,),
+                              GestureDetector(
+                                // onTap: () {
+                                //   signOut();
+                                //   LocalDataSaver.saveLoginData(false);
+                                //   Navigator.pushReplacement(
+                                //       context,
+                                //       MaterialPageRoute(
+                                //           builder: (_) => Login()));
+                                // },
                                 child: CircleAvatar(
                                   onBackgroundImageError: (object, StackTrace) {
                                     print("Ok");
@@ -342,7 +360,7 @@ class _HomePageState extends State<HomePage> {
                             return pinNoteList[index].pin
                                 ? Container(
                                     height:
-                                        MediaQuery.sizeOf(context).height / 2.5,
+                                        MediaQuery.sizeOf(context).height / 4.5,
                                     child: SingleChildScrollView(
                                       child: Column(
                                         children: [
@@ -356,8 +374,7 @@ class _HomePageState extends State<HomePage> {
                                                 Text(
                                                   "Pin",
                                                   style: TextStyle(
-                                                      color: color.white
-                                                          .withOpacity(0.5),
+
                                                       fontSize: 15,
                                                       fontWeight:
                                                           FontWeight.bold),
@@ -406,8 +423,8 @@ class _HomePageState extends State<HomePage> {
                                                                             10),
                                                                     decoration: BoxDecoration(
                                                                         border: Border.all(
-                                                                            color: color.white.withOpacity(
-                                                                                0.4)),
+                                                                            color: Colors.grey
+                                                                        ),
                                                                         borderRadius:
                                                                             BorderRadius.circular(7)),
                                                                     child:
@@ -420,7 +437,7 @@ class _HomePageState extends State<HomePage> {
                                                                           pinNoteList[index]
                                                                               .title,
                                                                           style: TextStyle(
-                                                                              color: color.white,
+                                                                              // color: color.white,
                                                                               fontSize: 20,
                                                                               fontWeight: FontWeight.bold),
                                                                         ),
@@ -432,8 +449,7 @@ class _HomePageState extends State<HomePage> {
                                                                           pinNoteList[index].content.length > 250
                                                                               ? "${pinNoteList[index].content.substring(0, 250)}..."
                                                                               : pinNoteList[index].content,
-                                                                          style:
-                                                                              TextStyle(color: color.white),
+                                                                          // style: TextStyle(color: color.white),
                                                                         )
                                                                       ],
                                                                     ),
@@ -468,8 +484,8 @@ class _HomePageState extends State<HomePage> {
                                                                             10),
                                                                     decoration: BoxDecoration(
                                                                         border: Border.all(
-                                                                            color: color.white.withOpacity(
-                                                                                0.4)),
+                                                                            color: Colors.grey
+                                                                        ),
                                                                         borderRadius:
                                                                             BorderRadius.circular(7)),
                                                                     child:
@@ -482,7 +498,7 @@ class _HomePageState extends State<HomePage> {
                                                                           pinNoteList[index]
                                                                               .title,
                                                                           style: TextStyle(
-                                                                              color: color.white,
+                                                                              // color: color.white,
                                                                               fontSize: 20,
                                                                               fontWeight: FontWeight.bold),
                                                                         ),
@@ -494,8 +510,7 @@ class _HomePageState extends State<HomePage> {
                                                                           pinNoteList[index].content.length > 250
                                                                               ? "${pinNoteList[index].content.substring(0, 250)}..."
                                                                               : pinNoteList[index].content,
-                                                                          style:
-                                                                              TextStyle(color: color.white),
+                                                                          // style: TextStyle(color: color.white),
                                                                         )
                                                                       ],
                                                                     ),
@@ -527,7 +542,7 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "All",
                                     style: TextStyle(
-                                        color: color.white.withOpacity(0.5),
+
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -563,9 +578,8 @@ class _HomePageState extends State<HomePage> {
                                                   padding: EdgeInsets.all(10),
                                                   decoration: BoxDecoration(
                                                       border: Border.all(
-                                                          color: color.white
-                                                              .withOpacity(
-                                                                  0.4)),
+                                                          color: Colors.grey
+                                                      ),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               7)),
@@ -577,7 +591,7 @@ class _HomePageState extends State<HomePage> {
                                                       Text(
                                                         noteList[index].title,
                                                         style: TextStyle(
-                                                            color: color.white,
+                                                            // color: color.white,
                                                             fontSize: 20,
                                                             fontWeight:
                                                                 FontWeight
@@ -594,8 +608,7 @@ class _HomePageState extends State<HomePage> {
                                                             ? "${noteList[index].content.substring(0, 250)}..."
                                                             : noteList[index]
                                                                 .content,
-                                                        style: TextStyle(
-                                                            color: color.white),
+                                                        // style: TextStyle(color: color.white),
                                                       )
                                                     ],
                                                   ),
@@ -623,8 +636,8 @@ class _HomePageState extends State<HomePage> {
                                                     EdgeInsets.only(bottom: 10),
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
-                                                        color: color.white
-                                                            .withOpacity(0.4)),
+                                                        color:  Colors.grey
+                                                    ),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             7)),
@@ -635,7 +648,7 @@ class _HomePageState extends State<HomePage> {
                                                     Text(
                                                       noteList[index].title,
                                                       style: TextStyle(
-                                                          color: color.white,
+                                                          // color: color.white,
                                                           fontSize: 20,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -651,8 +664,7 @@ class _HomePageState extends State<HomePage> {
                                                           ? "${noteList[index].content.substring(0, 250)}..."
                                                           : noteList[index]
                                                               .content,
-                                                      style: TextStyle(
-                                                          color: color.white),
+                                                      // style: TextStyle(color: color.white),
                                                     )
                                                   ],
                                                 ),
@@ -691,6 +703,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           );
+
     // SafeArea(
     //   child: SingleChildScrollView(
     //     child: Container(
@@ -937,7 +950,7 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   "All",
                   style: TextStyle(
-                      color: color.white.withOpacity(0.5),
+
                       fontSize: 15,
                       fontWeight: FontWeight.bold),
                 ),
@@ -972,7 +985,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         noteList[index].title,
                         style: TextStyle(
-                            color: color.white,
+                            // color: color.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
@@ -983,7 +996,7 @@ class _HomePageState extends State<HomePage> {
                         noteList[index].content.length > 250
                             ? "${noteList[index].content.substring(0, 250)}..."
                             : noteList[index].content,
-                        style: TextStyle(color: color.white),
+                        // style: TextStyle(color: color.white),
                       )
                     ],
                   ),

@@ -2,9 +2,9 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:keep_note_clone/page/createnote.dart';
 import 'package:painter/painter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 import '../color.dart';
 
 // class Drawing extends StatefulWidget {
@@ -133,6 +133,8 @@ import '../color.dart';
 // }
 
 class DrawingPage extends StatefulWidget {
+
+
   @override
   _DrawingPageState createState() => _DrawingPageState();
 }
@@ -166,11 +168,13 @@ class _DrawingPageState extends State<DrawingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color.bgcolor,
+      // backgroundColor: color.bgcolor,
       appBar: AppBar(
-        backgroundColor: color.bgcolor,
-        iconTheme: IconThemeData(color: color.white),
-        title: Text('Drawing Note',style: TextStyle(color: color.white),),
+        // backgroundColor: color.bgcolor,
+        // iconTheme: IconThemeData(color: color.white),
+        title: Text('Drawing Note',
+          // style: TextStyle(color: color.white),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.save),
@@ -195,12 +199,12 @@ class _DrawingPageState extends State<DrawingPage> {
                 children: [
                   _buildColorPicker(),
                   IconButton(
-                    color: color.white,
+                    // color: color.white,
                     icon: Icon(Icons.format_bold),
                     onPressed: _toggleBold,  // Function to toggle bold strokes
                   ),
                   IconButton(
-                    color: color.white,
+                    // color: color.white,
                     icon: Icon(Icons.undo),
                     onPressed: () {
                       if (_controller.isEmpty) {
@@ -213,7 +217,7 @@ class _DrawingPageState extends State<DrawingPage> {
                     },
                   ),
                   IconButton(
-                    color: color.white,
+                    // color: color.white,
                     icon: Icon(Icons.clear),
                     onPressed: () => _controller.clear(),
                   ),
@@ -241,6 +245,7 @@ class _DrawingPageState extends State<DrawingPage> {
   }
 
   void _saveAsImage() async {
+    var uuid = Uuid();
     // Render the drawing into an image
     final picture = _controller.finish(); // Complete the drawing
     final image = await picture.toImage(); // Convert it to an image with size
@@ -249,7 +254,7 @@ class _DrawingPageState extends State<DrawingPage> {
 
     // Save the PNG bytes to a file or do further processing
     final directory = await getApplicationDocumentsDirectory();
-    final filePath = '${directory.path}/drawing.png';
+    final filePath = '${directory.path}/${uuid.v1()}.png';
     final file = File(filePath);
     await file.writeAsBytes(pngBytes!);
     print('Image saved to $filePath');
@@ -281,7 +286,7 @@ class _DrawingPageState extends State<DrawingPage> {
           shape: BoxShape.circle,
           color: color,
           border: Border.all(
-            color: _selectedColor == color ? Colors.white : Colors.transparent,
+            color: _selectedColor == color  ? Colors.black : Colors.white,
             width: 3,
           ),
         ),
@@ -307,5 +312,4 @@ class _DrawingPageState extends State<DrawingPage> {
       }
     });
   }
-
 }

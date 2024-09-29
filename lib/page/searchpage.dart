@@ -209,45 +209,56 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: color.bgcolor,
+        // backgroundColor: color.bgcolor,
         body: SingleChildScrollView(
           child: SafeArea(
               child: Container(
-                decoration: BoxDecoration(color: color.white.withOpacity(0.1)),
+                decoration: BoxDecoration(
+                    // color: Colors.grey
+                ),
                 child: Column(
                   children: [
                     Row(
                       children: [
                         IconButton(onPressed: () {
                           Navigator.pop(context);
-                        }, icon: Icon(Icons.arrow_back_outlined) , color: color.white, ),
+                        }, icon: Icon(Icons.arrow_back_outlined) ,
+                          // color: color.white,
+                        ),
                         Expanded(
-                          child: TextField(
-                            textInputAction: TextInputAction.search,
-                            style: TextStyle(
-                                color: Colors.white
-                            ),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              errorBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              hintText: "Search Your Notes",
-                              hintStyle:
-                              TextStyle(color: color.white.withOpacity(0.5), fontSize: 16),
-                            ),
-                            onSubmitted: (value){
-                              setState(() {
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 20.00),
+                            child: TextField(
+                              textInputAction: TextInputAction.search,
+                              style: TextStyle(
+                                   // color: Colors.white
+                              ),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey,width: 1.0),borderRadius: BorderRadius.circular(30.00)),
+                                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey,width: 1.0),borderRadius: BorderRadius.circular(30.00)),
+                                enabledBorder:OutlineInputBorder(borderSide: BorderSide(color: Colors.grey,width: 1.0),borderRadius: BorderRadius.circular(30.00)),
+                                errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey,width: 1.0),borderRadius: BorderRadius.circular(30.00)),
+                                disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey,width: 1.0),borderRadius: BorderRadius.circular(30.00)),
+                                hintText: "Search Your Notes",
+                                hintStyle:
+                                TextStyle(
+                                    // color: color.white.withOpacity(0.5),
+                                    fontSize: 16),
+                              ),
+                              onSubmitted: (value){
+                                setState(() {
 
-                                SearchResults(value.toLowerCase());
-                              });
-                            },
+                                  SearchResults(value.toLowerCase());
+                                });
+                              },
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    isLoading ? Center(child: CircularProgressIndicator(color: Colors.white,),) :  NoteSectionAll()
+                    isLoading ? Center(child: CircularProgressIndicator(
+                      // color: Colors.white,
+                    ),) :  NoteSectionAll()
 
                   ],
                 ),
@@ -275,7 +286,7 @@ class _SearchViewState extends State<SearchView> {
                   Text(
                     "SEARCH RESULTS",
                     style: TextStyle(
-                        color: color.white.withOpacity(0.5),
+                          // color: Colors.grey,
                         fontSize: 13,
                         fontWeight: FontWeight.bold),
                   ),
@@ -305,14 +316,16 @@ class _SearchViewState extends State<SearchView> {
                           Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                border: Border.all(color: color.white.withOpacity(0.4)),
+                                border: Border.all(
+                                     color: Colors.grey
+                                ),
                                 borderRadius: BorderRadius.circular(7)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(SearchResultNotes[index]!.title,
                                     style: TextStyle(
-                                        color: color.white,
+                                        // color: color.white,
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold)),
                                 SizedBox(
@@ -322,7 +335,7 @@ class _SearchViewState extends State<SearchView> {
                                     ? "${SearchResultNotes[index]!.content.substring(0, 250)}..."
                                     : SearchResultNotes[index]!.content,
 
-                                  style: TextStyle(color: color.white),
+                                  // style: TextStyle(color: color.white),
                                 )
                               ],
                             ),

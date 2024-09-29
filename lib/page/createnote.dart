@@ -100,8 +100,8 @@ class _CreatenoteState extends State<Createnote> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            backgroundColor: color.cardcolor,
-            title: Text("Upload Photo",style: TextStyle(color: color.white),),
+            // backgroundColor: color.cardcolor,
+            title: Text("Upload Photo",),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -112,9 +112,9 @@ class _CreatenoteState extends State<Createnote> {
                   },
                   leading: Icon(
                     Icons.photo_album,
-                     color: color.white,
+                     // color: color.white,
                   ),
-                  title: Text("Select from Gallery",style: TextStyle(color: color.white),),
+                  title: Text("Select from Gallery",),
                 ),
                 ListTile(
                   onTap: () {
@@ -123,9 +123,9 @@ class _CreatenoteState extends State<Createnote> {
                   },
                   leading: Icon(
                     Icons.camera_alt,
-                    color: color.white,
+                    // color: color.white,
                   ),
-                  title: Text("Take a photo from Camera",style: TextStyle(color: color.white),),
+                  title: Text("Take a photo from Camera",),
                 )
               ],
             ),
@@ -137,10 +137,10 @@ class _CreatenoteState extends State<Createnote> {
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: true,
-      backgroundColor: color.bgcolor,
+      // backgroundColor: color.bgcolor,
       appBar: AppBar(
-        foregroundColor: color.white,
-        backgroundColor: color.bgcolor,
+        // foregroundColor: color.white,
+        // backgroundColor: color.bgcolor,
         elevation: 0.0,
         actions: [
           IconButton(onPressed: (){
@@ -187,7 +187,7 @@ class _CreatenoteState extends State<Createnote> {
             children: [
               TextField(
                 controller: title,
-                cursorColor: color.white,
+                // cursorColor: color.white,
                 style: TextStyle(
                     fontSize: 25,
                     color: color.white,
@@ -201,18 +201,20 @@ class _CreatenoteState extends State<Createnote> {
                     hintText: "Title",
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey.withOpacity(0.8),
+                      // color: Colors.grey.withOpacity(0.8),
                     )),
               ),
               Container(
-                height: 300,
+                height: 200,
                 child: TextField(
                   controller: content,
                   cursorColor: color.white,
                   keyboardType: TextInputType.multiline,
                   minLines: 50,
                   maxLines: null,
-                  style: TextStyle(fontSize: 17, color: color.white),
+                  style: TextStyle(fontSize: 17,
+                      // color: color.white
+                  ),
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       errorBorder: InputBorder.none,
@@ -222,7 +224,7 @@ class _CreatenoteState extends State<Createnote> {
                       hintText: "Note",
                       hintStyle: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey.withOpacity(0.8),
+                        // color: Colors.grey.withOpacity(0.8),
                       )),
                 ),
               ),
@@ -235,18 +237,7 @@ class _CreatenoteState extends State<Createnote> {
           ),
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.00),
-            // child: ElevatedButton(
-            //     onPressed: () {
-            //       _pickImage();
-            //     },
-            //     child: Text("Photo")),
-          ),
-          FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
             onPressed: () async {
               if (!isListening) {
                 bool micAvailable = await speechToText.initialize();
@@ -271,21 +262,19 @@ class _CreatenoteState extends State<Createnote> {
                 });
               }
             },
-            backgroundColor: color.cardcolor,
+            // backgroundColor: color.cardcolor,
             child: isListening
                 ? Icon(
                     Icons.record_voice_over,
-                    color: color.white,
+                    // color: color.white,
                   )
                 : Icon(
                     Icons.mic,
-                    color: color.white,
+                    // color: color.white,
                   ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.00),
             ),
-          ),
-        ],
       ),
     );
   }

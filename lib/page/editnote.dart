@@ -27,10 +27,10 @@ class _EditnoteState extends State<Editnote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color.bgcolor,
+      // backgroundColor: color.bgcolor,
       appBar: AppBar(
-        foregroundColor: color.white,
-        backgroundColor: color.bgcolor,
+        // foregroundColor: color.white,
+        // backgroundColor: color.bgcolor,
         elevation: 0.0,
         actions: [
           IconButton(
@@ -58,13 +58,13 @@ class _EditnoteState extends State<Editnote> {
             Form(
               child: TextFormField(
                 initialValue: NewTitle,
-                cursorColor: color.white,
+                // cursorColor: color.white,
                 onChanged: (value){
                   NewTitle = value;
                 },
                 style: TextStyle(
                     fontSize: 25,
-                    color: color.white,
+                    // color: color.white,
                     fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: InputBorder.none,
@@ -75,7 +75,7 @@ class _EditnoteState extends State<Editnote> {
                     hintText: "Title",
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey.withOpacity(0.8),
+                      // color: Colors.grey.withOpacity(0.8),
                     )),
               ),
             ),
@@ -87,11 +87,13 @@ class _EditnoteState extends State<Editnote> {
                       NewNoteDetail = value;
                     },
                     initialValue: NewNoteDetail,
-                    cursorColor: color.white,
+                    // cursorColor: color.white,
                     keyboardType: TextInputType.multiline,
                     minLines: 50,
                     maxLines: null,
-                    style: TextStyle(fontSize: 17, color: color.white),
+                    style: TextStyle(fontSize: 17,
+                        // color: color.white
+                    ),
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         errorBorder: InputBorder.none,
@@ -101,7 +103,7 @@ class _EditnoteState extends State<Editnote> {
                         hintText: "Note",
                         hintStyle: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey.withOpacity(0.8),
+                          // color: Colors.grey.withOpacity(0.8),
                         )),
                   ),
                 )),

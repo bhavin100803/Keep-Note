@@ -43,10 +43,10 @@ class _ArchivePageState extends State<Archiveview> {
   Widget build(BuildContext context) {
     return  isLoading
         ? Scaffold(
-      backgroundColor: color.bgcolor,
+      // backgroundColor: color.bgcolor,
       body: Center(
         child: CircularProgressIndicator(
-          color: color.white,
+          // color: color.white,
         ),
       ),
     )
@@ -54,7 +54,7 @@ class _ArchivePageState extends State<Archiveview> {
       endDrawerEnableOpenDragGesture: true,
       key: _draewrKey,
       drawer: Sidemenubar(),
-      backgroundColor: color.bgcolor,
+      // backgroundColor: color.bgcolor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -66,14 +66,16 @@ class _ArchivePageState extends State<Archiveview> {
                   width: MediaQuery.of(context).size.width,
                   height: 55,
                   decoration: BoxDecoration(
-                      color: color.cardcolor,
+                      // color: color.cardcolor,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            spreadRadius: 1,
-                            blurRadius: 3)
-                      ]),
+                      border: Border.all(color: Colors.grey)
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //       // color: Colors.black.withOpacity(0.2),
+                      //       spreadRadius: 1,
+                      //       blurRadius: 3)
+                      // ]
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -85,7 +87,7 @@ class _ArchivePageState extends State<Archiveview> {
                               },
                               icon: Icon(
                                 Icons.arrow_back_sharp,
-                                color: Colors.white,
+                                // color: Colors.white,
                               )),
                           SizedBox(
                             width: 10,
@@ -100,7 +102,7 @@ class _ArchivePageState extends State<Archiveview> {
                             child: Container(
                               width: MediaQuery.of(context).size.width/3,
                               height: 200,
-                              // decoration: BoxDecoration(border: Border.all(color: Colors.white)),
+                               // decoration: BoxDecoration(border: Border.all(color: Colors.white)),
                               child: Column(
                                 mainAxisAlignment:
                                 MainAxisAlignment.center,
@@ -110,8 +112,7 @@ class _ArchivePageState extends State<Archiveview> {
                                   Text(
                                     "Search Your Notes",
                                     style: TextStyle(
-                                        color:
-                                        Colors.white.withOpacity(0.5),
+                                        // color: Colors.white.withOpacity(0.5),
                                         fontSize: 15),
                                   ),
                                 ],
@@ -211,7 +212,7 @@ class _ArchivePageState extends State<Archiveview> {
                 Text(
                   "All",
                   style: TextStyle(
-                      color: color.white.withOpacity(0.5),
+                      // color: color.white.withOpacity(0.5),
                       fontSize: 15,
                       fontWeight: FontWeight.bold),
                 ),
@@ -236,7 +237,9 @@ class _ArchivePageState extends State<Archiveview> {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: color.white.withOpacity(0.4)),
+                      border: Border.all(
+                          color: Colors.grey
+                      ),
                       borderRadius: BorderRadius.circular(7)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,7 +247,7 @@ class _ArchivePageState extends State<Archiveview> {
                       Text(
                         noteList[index].title,
                         style: TextStyle(
-                            color: color.white,
+                            // color: color.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
@@ -255,7 +258,7 @@ class _ArchivePageState extends State<Archiveview> {
                         noteList[index].content.length > 250
                             ? "${noteList[index].content.substring(0, 250)}..."
                             : noteList[index].content,
-                        style: TextStyle(color: color.white),
+                        // style: TextStyle(color: color.white),
                       )
                     ],
                   ),
